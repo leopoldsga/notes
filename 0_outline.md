@@ -34,7 +34,7 @@
 > 
 > I’m asking because we limit the number of packets we can send/dispatch cycle to 1 frame (256 packets). So if we have a lot of connections, we may take several dispatch cycles until we are finally able to honor a postponed rxt. In the meantime, the connection could’ve been cleaned up by nginx.
 > 
-> > Nginx sends "close" would trigger "session_close" in VPP session api correspondingly.
+> > Nginx sends "close" would trigger "session_close" in VPP session api correspondingly, which instead generates one disconnect message in vpp event queue of the particular session worker.
 > 
 > tcp_do_fastretransmits cannot generate more than 1 frame  (256) of packets. Once it reaches that, it postpones all remaining fast  retransmits.
 > 
@@ -249,5 +249,6 @@ VPP重传遇无效TCP链接不崩溃。
 
 去锁之后单进程、多进程应用都能正常使用LDP VPP，且吞吐量有不低的提升。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0OTkxMjUzMDAsMTA0MTgwNzIxMF19
+eyJoaXN0b3J5IjpbLTExNDM4MDE0MzcsLTE0OTkxMjUzMDAsMT
+A0MTgwNzIxMF19
 -->
