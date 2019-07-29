@@ -27,26 +27,39 @@
     
 4.  VPP FRAME 限制，使得大量网络拥塞严重时也会导致重传拥塞的问题；
     
-5.  潜在的问题：TCP链接提前释放；
+5.  潜在的问题：TCP链接提前释放。应用进程对于是否丢包是无感知的，其行为在将有效数据发送完之后，会调用socket APIs中的“close”主动关闭sockets。
     
+6.  VPP存在的问题：存在已被释放的tcp connection还有未被重传的数据报文在postponed延迟重传队列中。
+    
+    -   问题出现的时机：数据传递结束时。
+        
+    -   问题出现的标志：非法读取内存地址导致segment fault。
+        
+    -   问题出现的原因：链接的末尾位的数据报文丢失，导致其重传事件的处理落后tcp connection释放的事件。因为每个dispatch cycle中的session_queue_node_fn中transport_update_time内部会重传【上限为一个FRAME】上一次之前cycle(s)遗留下来的重传事件。
+        
 
 > So this happens under heavy load? That is we’re getting a large number of connections per second and all exchange a reasonable amount of data? What’s the number of connections we’re getting/s? Is it 3600 (=50*72)?
 > 
 > I’m asking because we limit the number of packets we can send/dispatch cycle to 1 frame (256 packets). So if we have a lot of connections, we may take several dispatch cycles until we are finally able to honor a postponed rxt. In the meantime, the connection could’ve been cleaned up by nginx.
 > 
-> > Nginx sends "close" would trigger "session_close" in VPP session api correspondingly, which instead generates one disconnect message in vpp event queue of the particular session worker.
+> > Nginx sends "close" would trigger "session_close" in VPP session api correspondingly, which instead generates one "SESSION_CTRL_EVT_CLOSE" type event in vpp event queue of the particular session worker. When VPP process the event in session_queue_node_fn if the first time, the event would be just postponed. If not the first and the tx queue is still not empty, try to wait for some dispatch cycles. If not both, VPP calls "session_transport_close" in which
+> > 
+> > -   If tx queue wasn't drained, change state to closed waiting for transport.This way, the transport, if it so wishes, can continue to try sending the outstanding data (in closed state it cannot). It MUST however at one point, either after sending everything or after a timeout, call delete notify.
+> >     
+> > -   This will finally lead to the complete cleanup of the session via "transport_close".
+> >     
 > 
 > tcp_do_fastretransmits cannot generate more than 1 frame  (256) of packets. Once it reaches that, it postpones all remaining fast  retransmits.
 > 
 > tcp doesn’t generate more than 256 retransmitted packets per  dispatch cycle. This will change in the future and session layer won’t generate  more than 1 frame of packets (including retransmits) per dispatch cycle.
 > 
 > ——Florin
-> 
+
 TCP拥塞控制通过设定timer进行congestion control and recovery.
 
 1.  Packet loss: 当服务器收到三次duplicated ack数据包之后，判定packet loss发生。同时default RTO(Retransmission Timeout: default 3000 ms)开始计时并重传Dup ACK之后的包；
     
-2.  Session timeout：当RTO(?)时间耗尽时，tcp session会被关闭、释放。
+2.  [tcp_retries](https://stackoverflow.com/questions/5227520/how-many-times-will-tcp-retransmit)：当重传次数达到上限，tcp session会被关闭、释放。
     
 
 > The majority of us are well aware of the primary retransmission logic. On the initial packet sequence, there is a timer called Retransmission Timeout (RTO) that has an initial value of three seconds. After each retransmission the value of the RTO is doubled and the computer will retry up to three times. This means that if the sender does not receive the acknowledgement after three seconds (or RTT > 3 seconds), it will resend the packet. At this point the sender will wait for six seconds to get the acknowledgement. If the sender still does not get the acknowledgement, it will retransmit the packet for a third time and wait for 12 seconds, at which point it will give up.
@@ -55,7 +68,7 @@ TCP拥塞控制通过设定timer进行congestion control and recovery.
 
 VPP中TCP链接释放情况如下：
 
-![](file://C:/Users/guoaosun/Downloads/SunGuoao/VPP/Single_thread_vpp_&_nginx/Function_Graph/tcp_connection_cleanup.png?lastModify=1564361800)
+![](file://C:/Users/guoaosun/Downloads/SunGuoao/VPP/Single_thread_vpp_&_nginx/Function_Graph/tcp_connection_cleanup.png?lastModify=1564367248)
 
 在VPP中，无数据传输【没有数据接收/发送】的tcp connection耗尽生存周期后，被VPP进程通过调用`tcp_connection_cleanup`函数释放链接。
 
@@ -249,6 +262,6 @@ VPP重传遇无效TCP链接不崩溃。
 
 去锁之后单进程、多进程应用都能正常使用LDP VPP，且吞吐量有不低的提升。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNDM4MDE0MzcsLTE0OTkxMjUzMDAsMT
-A0MTgwNzIxMF19
+eyJoaXN0b3J5IjpbMTg2NTE0ODgzMiwtMTE0MzgwMTQzNywtMT
+Q5OTEyNTMwMCwxMDQxODA3MjEwXX0=
 -->
