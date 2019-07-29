@@ -41,7 +41,7 @@
 > tcp doesn’t generate more than 256 retransmitted packets per  dispatch cycle. This will change in the future and session layer won’t generate  more than 1 frame of packets (including retransmits) per dispatch cycle.
 > 
 > ——Florin
-
+> 
 TCP拥塞控制通过设定timer进行congestion control and recovery.
 
 1.  Packet loss: 当服务器收到三次duplicated ack数据包之后，判定packet loss发生。同时default RTO(Retransmission Timeout: default 3000 ms)开始计时并重传Dup ACK之后的包；
@@ -249,5 +249,5 @@ VPP重传遇无效TCP链接不崩溃。
 
 去锁之后单进程、多进程应用都能正常使用LDP VPP，且吞吐量有不低的提升。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA0MTgwNzIxMF19
+eyJoaXN0b3J5IjpbLTE0OTkxMjUzMDAsMTA0MTgwNzIxMF19
 -->
