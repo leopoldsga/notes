@@ -4,7 +4,7 @@
 
 According to the TCP retransmission of VPP, we could give the following pipeline.
 
-![](https://github.com/Guoao-Sun/notes/blob/master/Figures/](https://github.com/Guoao-Sun/notes/blob/master/Figures/)
+![](https://github.com/Guoao-Sun/notes/blob/master/Figures/](https://github.com/Guoao-Sun/notes/blob/master/Figures/[tcp_do_fastretransmits.png](https://github.com/Guoao-Sun/notes/blob/master/Figures/tcp_do_fastretransmits.png "tcp_do_fastretransmits.png"))
 
 ## 1.1 Solution
 
@@ -31,5 +31,5 @@ Our primary solution is to abandon the `unhandled_evts_vector` and do not reset 
 
 Using this primary idea, we provided one patched that is already accepted by vpp community.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjA0MjQ5NjAsLTIwODg3NDY2MTJdfQ==
+eyJoaXN0b3J5IjpbNzE1MzM4NzcwLC0yMDg4NzQ2NjEyXX0=
 -->
