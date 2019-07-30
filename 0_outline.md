@@ -68,7 +68,6 @@ TCP拥塞控制通过设定timer进行congestion control and recovery.
 
 VPP中TCP链接释放情况如下：
 
-![](file://C:/Users/guoaosun/Downloads/SunGuoao/VPP/Single_thread_vpp_&_nginx/Function_Graph/tcp_connection_cleanup.png?lastModify=1564367248)
 
 在VPP中，无数据传输【没有数据接收/发送】的tcp connection耗尽生存周期后，被VPP进程通过调用`tcp_connection_cleanup`函数释放链接。
 
@@ -262,6 +261,6 @@ VPP重传遇无效TCP链接不崩溃。
 
 去锁之后单进程、多进程应用都能正常使用LDP VPP，且吞吐量有不低的提升。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg2NTE0ODgzMiwtMTE0MzgwMTQzNywtMT
-Q5OTEyNTMwMCwxMDQxODA3MjEwXX0=
+eyJoaXN0b3J5IjpbLTE3OTM4MTE4NTcsMTg2NTE0ODgzMiwtMT
+E0MzgwMTQzNywtMTQ5OTEyNTMwMCwxMDQxODA3MjEwXX0=
 -->
