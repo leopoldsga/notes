@@ -174,7 +174,7 @@ FRR(Fast Retransmit and Recovery)使用timer监控丢失的数据包并进行快
 
 挑战一
 
-如何应对大量丢包而不崩溃
+如何应对重传崩溃
 
 挑战二
 
@@ -260,6 +260,7 @@ VPP重传遇无效TCP链接不崩溃。
 
 去锁之后单进程、多进程应用都能正常使用LDP VPP，且吞吐量有不低的提升。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIwOTQxODQyLDE4NjUxNDg4MzIsLTExND
-M4MDE0MzcsLTE0OTkxMjUzMDAsMTA0MTgwNzIxMF19
+eyJoaXN0b3J5IjpbLTc5MTUyMjE5NywxMjA5NDE4NDIsMTg2NT
+E0ODgzMiwtMTE0MzgwMTQzNywtMTQ5OTEyNTMwMCwxMDQxODA3
+MjEwXX0=
 -->
