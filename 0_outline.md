@@ -19,7 +19,7 @@
 
 ## 1.1 TCP Retransmit Robustness
 
-1.  网络丢包问题几大成因；
+1.  网络丢包问题的成因；
     
 2.  VPP如何应对丢包问题,VPP host stack支持的TCP拥塞控制算法；
     
@@ -67,7 +67,6 @@ TCP拥塞控制通过设定timer进行congestion control and recovery.
 > ——[Understanding RTT Impact on TCP Retransmissions](https://blog.catchpoint.com/2014/04/29/understanding-rtt-impact-on-tcp-retransmissions/)
 
 VPP中TCP链接释放情况如下：
-
 
 在VPP中，无数据传输【没有数据接收/发送】的tcp connection耗尽生存周期后，被VPP进程通过调用`tcp_connection_cleanup`函数释放链接。
 
@@ -261,6 +260,6 @@ VPP重传遇无效TCP链接不崩溃。
 
 去锁之后单进程、多进程应用都能正常使用LDP VPP，且吞吐量有不低的提升。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3OTM4MTE4NTcsMTg2NTE0ODgzMiwtMT
-E0MzgwMTQzNywtMTQ5OTEyNTMwMCwxMDQxODA3MjEwXX0=
+eyJoaXN0b3J5IjpbMTIwOTQxODQyLDE4NjUxNDg4MzIsLTExND
+M4MDE0MzcsLTE0OTkxMjUzMDAsMTA0MTgwNzIxMF19
 -->
