@@ -11,7 +11,7 @@
     
     -   降低上下文切换开销
         
-    -   fast path（调研IX论文，明确是否存在该论点）
+    -   fast path（调研IX、mTCP、Stackmap、F-Stack论文，明确是否存在该论点）
         
     -   容易定制（适用不同的场景，可以开发不同的定制化UNS）
         
@@ -50,5 +50,5 @@
 
 1-6小节为Introduction&Motivation；7小节为Design；8小节为Implementation；9小节为Evaluation。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzE4OTMxMjQzXX0=
+eyJoaXN0b3J5IjpbLTc1NzIyNjY3NywzMTg5MzEyNDNdfQ==
 -->
