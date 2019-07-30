@@ -12,9 +12,11 @@ We enable the `tcp_do_fastretransmits` module with one judge function that just 
 
 # 2 VLS lock optimization
 
-| RPS | 0KB | 1KB | 10KB |  |
+| RPS | 0KB | 1KB | 10KB |100KB  |
 |--|--|--|--|--|
-|  |  |  |  |  |
+| LDP with VLS | 196,603 | 123,617 | 95,386 | 26,956 |
+| LDP without VLS | 212,816 | 145,495 | 114,220 | 29,328 |
+| Improved rate | 8% | 17% | 20% |  |
 
 
 Considering single-process applications, we find out that it is not necessary for VPP to enable VLS layer which locks specific vcl sessions during every vcl session access from applications. And those lock options really consume a lot considerable CPU resource that could be used for other CPU-bound functions of applications.
@@ -29,5 +31,5 @@ Our primary solution is to abandon the `unhandled_evts_vector` and do not reset 
 
 Using this primary idea, we provided one patched that is already accepted by vpp community.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODc4ODkzMDIyLC0yMDg4NzQ2NjEyXX0=
+eyJoaXN0b3J5IjpbLTQ3ODU2NTY2NSwtMjA4ODc0NjYxMl19
 -->
