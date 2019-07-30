@@ -213,7 +213,7 @@ During each `epoll wait` call triggered by external process, all the events from
 
 According to logic of epoll in VPP, it processes events in `unhandled_evts_vector` queue first before put events from`mq_msg_vector`queue into events queue, which are transformed into epoll events compatible with epoll mechanism on kernel.
 
-![](file://C:/Users/guoaosun/Downloads/SunGuoao/MyLearning/%E8%AE%BA%E6%96%87/Figures/vppcom_epoll_wait.png?lastModify=1564366695)
+![]([https://github.com/Guoao-Sun/notes/tree/master/Figures/vppcom_epoll_wait.png)
 
 These two queues work fine with normal application which is not I/O sensitive. Because there would not be such many networking events during each dispatch cycle of VPP that one `epoll wait` cycle (default to be 512 maxevents) is not capable of handling all the events. So the second queue named `unhandled_evts_vector` is likely to containing no session events.
 
@@ -263,5 +263,5 @@ And when `vcl_epoll_wait_handle_mq_event` processes those events in `unhandled_e
 
 How to make sure that the two queues be consistent with each other is the third challenge we are going to handle.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODg2ODU3OThdfQ==
+eyJoaXN0b3J5IjpbOTY3MjU0OTMxLDg4Njg1Nzk4XX0=
 -->
