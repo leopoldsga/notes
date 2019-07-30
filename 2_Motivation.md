@@ -100,6 +100,7 @@ For instance, the `socket` api would be intercepted by `libvcl_ldpreload.so` whe
 
 ### 2.1.1 vls_create
 
+```c
 vls_handle_t  
 vls_create (uint8_t proto, uint8_t is_nonblocking)  
 {  
@@ -135,11 +136,12 @@ vls_alloc (vcl_session_handle_t sh)
  vls_table_wunlock ();  
  return vls->vls_index;  
 }
+```
 
 According to the source code showed above, ldp layer would create `vcl_locked_session_t` for each session which works just like file descriptor on linux network stack. And the `vls_alloc` functions would further exploit read/write lock of one global data structure named `vls_main_t` to update attributes of the new created vls session.
 
 After the listen session or listen file descriptor is created correctly, `vls_accept`, `vls_write` functions would be called to accept new tcp connections and write data to new sessions established for processing requests from remote clients.
-
+```c
 vls_handle_t  
 vls_accept (vls_handle_t listener_vlsh, vppcom_endpt_t * ep, int flags)  
 {  
@@ -200,6 +202,7 @@ vls_get_and_lock (vls_handle_t vlsh)
  clib_spinlock_lock (&vls->lock);  
  return vls;  
 }
+```
 
 Based on the source code of vls, we could notice that each vls option such as `vls_create`, `vls_accept` and `vls_write` would enable the write lock of the global structure named `vlsm`. That happens because the status of the member of `vlsm` would be changed, and lock is used to keep the status of those members of `vlsm` correct and robust.
 
@@ -218,7 +221,7 @@ According to logic of epoll in VPP, it processes events in `unhandled_evts_vecto
 These two queues work fine with normal application which is not I/O sensitive. Because there would not be such many networking events during each dispatch cycle of VPP that one `epoll wait` cycle (default to be 512 maxevents) is not capable of handling all the events. So the second queue named `unhandled_evts_vector` is likely to containing no session events.
 
 As for I/O sensitive applications such as http server who may have to processing millions of tcp connections at a time, which inevitably incurs more than 512 or 4096 events each dispatch cycle. Then the remaining unhandled events kept in `mq_msg_vector` would be put into the `unhandled_evts_vector` and returned to application process with the following `epoll wait`.
-
+```c
 typedef struct svm_msg_q_ring_  
 {  
  volatile u32 cursize;  /**< current size of the ring */  
@@ -256,6 +259,7 @@ typedef struct session_accepted_msg_
  uword vpp_event_queue_address;  
  transport_endpoint_t rmt;  
 } __clib_packed session_accepted_msg_t;
+```
 
 VPP is not capable of ensuring that events kept in the two event queues give same attributes. That is because that VPP exploit one zero-length array and dynamically allocating memory to store message in session event structure.
 
@@ -263,6 +267,6 @@ And when `vcl_epoll_wait_handle_mq_event` processes those events in `unhandled_e
 
 How to make sure that the two queues be consistent with each other is the third challenge we are going to handle.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMjkxNzYyMDUsOTY3MjU0OTMxLDg4Nj
+eyJoaXN0b3J5IjpbLTE1MTYxMjQ4MjYsOTY3MjU0OTMxLDg4Nj
 g1Nzk4XX0=
 -->
