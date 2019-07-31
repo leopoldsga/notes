@@ -58,17 +58,13 @@
 
 ## 1.1 TCP Retransmit Robustness
 
-1.  网络丢包问题的成因；
+1.  如何处理链接尾部丢包问题。
+2. 内核协议栈如何处理，VPP如何处理，其他的用户态网络协议栈如何处理；
+3. 是否是共性问题；
     
-2.  VPP如何应对丢包问题,VPP host stack支持的TCP拥塞控制算法；
+4.  潜在的问题：TCP链接提前释放。应用进程对于是否丢包是无感知的，其行为在将有效数据发送完之后，会调用socket APIs中的“close”主动关闭sockets。
     
-3.  TCP重传策略的实现；
-    
-4.  VPP FRAME 限制，使得大量网络拥塞严重时也会导致重传拥塞的问题；
-    
-5.  潜在的问题：TCP链接提前释放。应用进程对于是否丢包是无感知的，其行为在将有效数据发送完之后，会调用socket APIs中的“close”主动关闭sockets。
-    
-6.  VPP存在的问题：存在已被释放的tcp connection还有未被重传的数据报文在postponed延迟重传队列中。
+5.  VPP存在的问题：存在已被释放的tcp connection还有未被重传的数据报文在postponed延迟重传队列中。
     
     -   问题出现的时机：数据传递结束时。
         
@@ -299,7 +295,7 @@ VPP重传遇无效TCP链接不崩溃。
 
 去锁之后单进程、多进程应用都能正常使用LDP VPP，且吞吐量有不低的提升。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQyNDIzMTQ5NSwtNzkxNTIyMTk3LDEyMD
-k0MTg0MiwxODY1MTQ4ODMyLC0xMTQzODAxNDM3LC0xNDk5MTI1
-MzAwLDEwNDE4MDcyMTBdfQ==
+eyJoaXN0b3J5IjpbMjE3NDUzNTg4LC00MjQyMzE0OTUsLTc5MT
+UyMjE5NywxMjA5NDE4NDIsMTg2NTE0ODgzMiwtMTE0MzgwMTQz
+NywtMTQ5OTEyNTMwMCwxMDQxODA3MjEwXX0=
 -->
