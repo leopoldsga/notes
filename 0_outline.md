@@ -8,7 +8,7 @@
 
 1.  明确所应对的现实场景。比如高性能网络、高性能web服务器等。
     
-2.  论证，在当下的场景若要实现自身的目标（高性能），UNS占据很大一部分权重。
+2.  论证，在当下的场景若要实现自身的目标（高性能），NS占据很大一部分权重。
     
 3.  UNS在应对当下的场景，比KNS更为优化。具体的论据：（UNS的优势）
     
@@ -295,7 +295,8 @@ VPP重传遇无效TCP链接不崩溃。
 
 去锁之后单进程、多进程应用都能正常使用LDP VPP，且吞吐量有不低的提升。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjE3NDUzNTg4LC00MjQyMzE0OTUsLTc5MT
-UyMjE5NywxMjA5NDE4NDIsMTg2NTE0ODgzMiwtMTE0MzgwMTQz
-NywtMTQ5OTEyNTMwMCwxMDQxODA3MjEwXX0=
+eyJoaXN0b3J5IjpbLTgwMzY5Nzc1NywyMTc0NTM1ODgsLTQyND
+IzMTQ5NSwtNzkxNTIyMTk3LDEyMDk0MTg0MiwxODY1MTQ4ODMy
+LC0xMTQzODAxNDM3LC0xNDk5MTI1MzAwLDEwNDE4MDcyMTBdfQ
+==
 -->
