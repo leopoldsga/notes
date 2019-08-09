@@ -11,7 +11,7 @@ Pipeline:
 	- No memory copy
 	- High packet processing speed
 	- Full-stack functionality
-5. Among those userspace network stacks(mTCP, netmap, lwIP, ClickNF, F-stack, VP)
+5. Among those userspace network stacks(mTCP, netmap, lwIP, ClickNF, F-stack, VPP)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNTIwNTM0MTgsMTgzNTc2NzMyMF19
+eyJoaXN0b3J5IjpbLTkxNjYzMzgyOCwxODM1NzY3MzIwXX0=
 -->
