@@ -4,7 +4,7 @@ Pipeline:
 	- High performance
 2. 协议栈对Web server的重要性
 3. User space network stack has been proved to deliver high performance
-	- For instance, DPDK, mTCP, netmap, 
+	- For instance, DPDK, mTCP, netmap, VPP and Seastar
 4. Fro, web server, Userspace stack should offers many features
 	- Enough CPU resource
 		- No context switches
@@ -18,7 +18,7 @@ Pipeline:
 	- Message transferring
 	- Lock overhead.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzYwNDYyMTkyLC0xMTk5MTczMzc3LC0xMT
-EwNzc3NDE3LDE1MDYwNzMxNjgsLTE4MTYzMjM4NTMsMTgzNTc2
-NzMyMF19
+eyJoaXN0b3J5IjpbLTUzOTk0MjYxMiwtMTE5OTE3MzM3NywtMT
+ExMDc3NzQxNywxNTA2MDczMTY4LC0xODE2MzIzODUzLDE4MzU3
+NjczMjBdfQ==
 -->
