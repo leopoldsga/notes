@@ -13,8 +13,9 @@ Pipeline:
 	- Full-stack functionality
 5. Among those userspace network stacks(mTCP, netmap, lwIP, F-stack, VPP, Seastar), VPP is arguably the best choice for web servers.[Evidence here]
 6. However, VPP has some limitations
-	-
+	- Handling packet lossing.
+	- 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA2OTE4OTQ1MCwtMTgxNjMyMzg1MywxOD
+eyJoaXN0b3J5IjpbMTE0ODMyNDcwNSwtMTgxNjMyMzg1MywxOD
 M1NzY3MzIwXX0=
 -->
