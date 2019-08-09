@@ -3,8 +3,6 @@ Pipeline:
 	- Low latency
 	- High performance
 		- Enough CPU resource
-			- Eliminate/Mitigate context switch overhead
-			- Good cache locality
 		- High packet processing rate
 		- Eliminate/Mitigate memory copy
 2. 协议栈对Web server的重要性
@@ -14,7 +12,7 @@ Pipeline:
 		- No context switches
 		- Good cache locality
 	- No memory copy
-	- 
+	- High packet processing speed
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMDQ4MzgyNzgsMTgzNTc2NzMyMF19
+eyJoaXN0b3J5IjpbLTE5MzY4NjkxNzAsMTgzNTc2NzMyMF19
 -->
