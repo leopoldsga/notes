@@ -3,10 +3,10 @@ Pipeline:
 	- Low latency
 	- High performance
 		- Enough CPU resource
-		- 
+		- High packet processing rate
 2. 协议栈对Web server的重要性
 3. User space network stack outperforms stack in kernel
 4. Fro, web server, Userspace stack should offers many features
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NDkyOTExNzcsMTgzNTc2NzMyMF19
+eyJoaXN0b3J5IjpbLTEzNjE3OTk0MTgsMTgzNTc2NzMyMF19
 -->
