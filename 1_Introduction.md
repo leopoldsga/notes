@@ -11,8 +11,8 @@ Pipeline:
 	- No memory copy
 	- High packet processing speed
 	- Full-stack functionality
-5. Among those userspace network stacks(mTCP, netmap, lwIP, F-stack, VPP, Seastar), VPP is arguably the best choice for web servers.[]
+5. Among those userspace network stacks(mTCP, netmap, lwIP, F-stack, VPP, Seastar), VPP is arguably the best choice for web servers.[Evidence he]
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU4Mjg3NDM3MSwtMTgxNjMyMzg1MywxOD
-M1NzY3MzIwXX0=
+eyJoaXN0b3J5IjpbNDQ4NTAxMDIxLC0xODE2MzIzODUzLDE4Mz
+U3NjczMjBdfQ==
 -->
