@@ -3,8 +3,8 @@ Pipeline:
 	- Low latency
 	- High performance
 2. 协议栈对Web server的重要性
-3. User space network stack outperforms stack in kernel
-	- For applications sensitive to latency and jitter, kernel network stack is not capable of delivering enough network capacity.
+3. User space network stack has been proved to deliver high performance
+	- For instance, DPDK
 4. Fro, web server, Userspace stack should offers many features
 	- Enough CPU resource
 		- No context switches
@@ -18,6 +18,6 @@ Pipeline:
 	- Message transferring
 	- Lock overhead.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzg4Njk5MjA0LC0xMTEwNzc3NDE3LDE1MD
-YwNzMxNjgsLTE4MTYzMjM4NTMsMTgzNTc2NzMyMF19
+eyJoaXN0b3J5IjpbLTExOTkxNzMzNzcsLTExMTA3Nzc0MTcsMT
+UwNjA3MzE2OCwtMTgxNjMyMzg1MywxODM1NzY3MzIwXX0=
 -->
