@@ -13,6 +13,7 @@ Pipeline:
 		- Good cache locality
 	- No memory copy
 	- High packet processing speed
+	- Full-stack functionality
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MzY4NjkxNzAsMTgzNTc2NzMyMF19
+eyJoaXN0b3J5IjpbMTM2MTUzMDQyOCwxODM1NzY3MzIwXX0=
 -->
