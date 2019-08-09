@@ -15,8 +15,8 @@ Pipeline:
 6. However, VPP has some limitations
 	- Handling packet lossing.
 	- Message transferring
-	- 
+	- Lock overhead.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUwNjA3MzE2OCwtMTgxNjMyMzg1MywxOD
-M1NzY3MzIwXX0=
+eyJoaXN0b3J5IjpbNTUzMDY4NDI3LDE1MDYwNzMxNjgsLTE4MT
+YzMjM4NTMsMTgzNTc2NzMyMF19
 -->
